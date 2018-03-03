@@ -29,11 +29,13 @@ gem 'high_voltage'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
+gem "paperclip", "~> 5.2.1"
 group :development do
   gem 'better_errors'
   gem 'foreman'
   gem 'rails_layout'
 end
+gem 'ffi-pcap'
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-rescue'

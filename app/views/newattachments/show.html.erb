@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @newattachment.name %>
+  <% @pcap.loop do |this, pkt| %>
+<p><%= pkt.time %>
+<% pkt.body.each_byte do |x| %>
+<%= "%0.2x " % x %>
+<% end %>
+</p>
+<% end %>
+<hr>
+
+   </p>
+
+<%= link_to 'Edit', edit_newattachment_path(@newattachment) %> |
+<%= link_to 'Back', newattachments_path %>

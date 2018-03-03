@@ -1,1 +1,8 @@
-<h3>Welcome</h3>
+<h3>Hello from Plier: Let's analyze your pcap!</h3>
+<%= form_for @newattachment, url: newattachments_path, html: { multipart: true } do |form| %>
+<h5>Name of the file:</h5>
+<%= form.text_field :name %>
+<h5>Upload the pcap to be analyzed: </h5>
+<%= form.file_field :pcap_file %>
+<%= form.submit :class=> "button", :value => "Analyze" %>
+<% end %>

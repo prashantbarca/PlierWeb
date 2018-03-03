@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Newattachments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @newattachments.each do |newattachment| %>
+      <tr>
+        <td><%= newattachment.name %></td>
+	<td><%= newattachment.pcap_file.url %></td>
+	<td><%= link_to 'Show', newattachment %></td>
+        <td><%= link_to 'Edit', edit_newattachment_path(newattachment) %></td>
+        <td><%= link_to 'Destroy', newattachment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Newattachment', new_newattachment_path %>
