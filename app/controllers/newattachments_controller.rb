@@ -12,7 +12,15 @@ class NewattachmentsController < ApplicationController
   # GET /newattachments/1.json
   def show
     # puts @newattachment.pcap_file.url
-    @pcap = FFI::PCap::Offline.new("~/Plier/public"+@newattachment.pcap_file.url.split("?")[0])
+    @pcap = "/home/radics/Plier/public"+@newattachment.pcap_file.url.split("?")[0]
+    s = TCPSocket.new '0.0.0.0', 20001
+    s.write @pcap
+    line = s.recv(20000)
+    @output = eval("["+ line.split("array")[1].split('[')[1].split(']')[0] + "]")
+    @true_output = eval("["+ line.split("array")[1].split('[')[2].split(']')[0] + "]")
+    puts @output.length
+    puts @true_output.length
+    s.close
   end
 
   # GET /newattachments/new

@@ -1,18 +1,32 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @newattachment.name %>
-  <% @pcap.loop do |this, pkt| %>
-<p><%= pkt.time %>
-<% pkt.body.each_byte do |x| %>
-<%= "%0.2x " % x %>
-<% end %>
+<strong>Name:</strong>
+<%= @newattachment.name %>
+
+<table>
+    <tr>
+        <% var = 0 %>
+        <th>Our classficiation</th>
+        <th>Real Output</th>
+        <th>Compare</th>
+    </tr>
+   <% for i in (0..(@output.length-1)) %>
+    <tr>
+        <td><%= @output[i] %></td>
+        <td><%= @true_output[i] %></td>
+        <% if (@output[i] == 'http' and (@true_output[i] == 'HTTP' or @true_output[i] == 'URLENCODED-FORM' or  @true_output[i] == "DATA-TEXT-LINES" or @true_output[i] == "XML")) or @output[i] == @true_output[i] or (@output[i] == "none" and @true_output[i] == "TCP") %>
+           <td><%= "Matches" %></td>
+            <% var = var + 1 %>
+        <% end %>
+    </tr>
+    <% end %>
+</table>
+<h3>Our total - <%= var %>/<%= @output.length %></h3>
 </p>
-<% end %>
 <hr>
 
-   </p>
+</p>
 
 <%= link_to 'Edit', edit_newattachment_path(@newattachment) %> |
 <%= link_to 'Back', newattachments_path %>
